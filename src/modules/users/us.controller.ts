@@ -18,9 +18,9 @@ import { CustomParseUUIDPipe } from "src/common/pipes/custom-parse-uuid.pipe";
 import { CustomValidationPipe } from "src/common/pipes/custom-validation.pipe";
 /* Response imports */
 import { FindAllUsersResponse } from "./responses/find-all-us.response";
+import { FindOneUserResponse } from "./responses/find-one-us.response";
 /* Service imports */
 import { UsersService } from "./providers/us.service";
-import { FindOneUserResponse } from "./responses/find-one-us.response";
 /* UsersController */
 @Controller(`${ControllersRoutePathPrefixesEnum.USER}`)
 export class UsersController {

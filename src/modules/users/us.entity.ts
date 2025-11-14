@@ -2,7 +2,7 @@
 import { AbstractEntityPropertiesDbNamesEnum } from "src/common/enums/abstract-entity-properties-db-names.enum";
 import { DbConstraintsEnum } from "src/common/enums/db-constraints.enum";
 import { RolesEnum } from "src/common/enums/roles.enum";
-import { UserEntityPropertiesDbNamesEnum } from "./enums/us-entity-properties-db-name.enum";
+import { UserEntityPropertiesDbNamesEnum } from "./enums/us-entity-properties-db-names.enum";
 import { UserEntityPropertiesNamesEnum } from "./enums/us-entity-properties-names.enum";
 /* Utils imports */
 import { MessagesUtilsClass } from "src/common/utils/messages/messages-utils.class";
@@ -36,7 +36,7 @@ export class UserEntity {
     name: AbstractEntityPropertiesDbNamesEnum.CREATED_AT,
     type: "timestamp with time zone",
   })
-  createdAt: Date;
+  createdAt: string;
   @JoinColumn({
     name: AbstractEntityPropertiesDbNamesEnum.CREATED_BY_ID,
     foreignKeyConstraintName: MessagesUtilsClass.generateDbConstraintsNames(
@@ -51,7 +51,7 @@ export class UserEntity {
     name: AbstractEntityPropertiesDbNamesEnum.UPDATED_AT,
     type: "timestamp with time zone",
   })
-  updatedAt: Date;
+  updatedAt: string;
   @JoinColumn({
     name: AbstractEntityPropertiesDbNamesEnum.UPDATED_BY_ID,
     foreignKeyConstraintName: MessagesUtilsClass.generateDbConstraintsNames(
@@ -86,6 +86,6 @@ export class UserEntity {
     nullable: true,
   })
   usPasswordResetToken: string;
-  @Column({ name: UserEntityPropertiesDbNamesEnum.ROLE })
+  @Column({ name: UserEntityPropertiesDbNamesEnum.ROLE, enum: RolesEnum })
   usRole: RolesEnum;
 }

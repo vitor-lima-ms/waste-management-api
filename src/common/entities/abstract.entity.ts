@@ -3,7 +3,7 @@ import { UserEntity } from "src/modules/users/us.entity";
 /* Enum imports */
 import { AbstractEntityPropertiesDbNamesEnum } from "../enums/abstract-entity-properties-db-names.enum";
 import { DbConstraintsEnum } from "../enums/db-constraints.enum";
-import { UserEntityPropertiesDbNamesEnum } from "src/modules/users/enums/us-entity-properties-db-name.enum";
+import { UserEntityPropertiesDbNamesEnum } from "src/modules/users/enums/us-entity-properties-db-names.enum";
 import { UserEntityPropertiesNamesEnum } from "src/modules/users/enums/us-entity-properties-names.enum";
 /* Other libraries imports */
 import {
@@ -20,8 +20,7 @@ export abstract class AbstractEntity {
     name: AbstractEntityPropertiesDbNamesEnum.CREATED_AT,
     type: "timestamp with time zone",
   })
-  createdAt: Date;
-  @ManyToOne(() => UserEntity, { nullable: true })
+  createdAt: string;
   @JoinColumn({
     name: AbstractEntityPropertiesDbNamesEnum.CREATED_BY_ID,
     foreignKeyConstraintName: MessagesUtilsClass.generateDbConstraintsNames(
@@ -30,12 +29,13 @@ export abstract class AbstractEntity {
     ),
     referencedColumnName: UserEntityPropertiesNamesEnum.ID,
   })
+  @ManyToOne(() => UserEntity, { nullable: true })
   createdById: string;
   @UpdateDateColumn({
     name: AbstractEntityPropertiesDbNamesEnum.UPDATED_AT,
     type: "timestamp with time zone",
   })
-  updatedAt: Date;
+  updatedAt: string;
   @JoinColumn({
     name: AbstractEntityPropertiesDbNamesEnum.UPDATED_BY_ID,
     foreignKeyConstraintName: MessagesUtilsClass.generateDbConstraintsNames(

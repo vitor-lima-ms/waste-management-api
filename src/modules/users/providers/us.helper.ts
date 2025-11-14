@@ -1,5 +1,5 @@
 /* Enum imports */
-import { UserEntityPropertiesDbNamesEnum } from "../enums/us-entity-properties-db-name.enum";
+import { UserEntityPropertiesDbNamesEnum } from "../enums/us-entity-properties-db-names.enum";
 import { UserEntityPropertiesNamesEnum } from "../enums/us-entity-properties-names.enum";
 /* Nest.js imports */
 import { Injectable } from "@nestjs/common";
