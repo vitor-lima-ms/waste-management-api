@@ -45,12 +45,6 @@ export class FilterWastesDto {
   })
   @IsOptional()
   wtType?: WastesTypesEnum;
-  @IsNotEmpty({
-    message: MessagesUtilsClass.generateClassValidatorErrorMessage(
-      WasteEntityPropertiesPtBrNamesEnum.USER_NAME,
-      ClassValidatorDecoratorsNamesEnum.IS_NOT_EMPTY,
-    ),
-  })
   @IsOptional()
   wtUserName?: string;
 }

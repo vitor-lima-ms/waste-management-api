@@ -1,4 +1,5 @@
 /* Enum imports */
+import { SqlAggregateFunctionsEnum } from "../enums/sql-aggregate-functions.enum";
 import { SqlDataTypesEnum } from "../enums/sql-data-types.enum";
 /* Nest.js imports */
 import { Injectable } from "@nestjs/common";
@@ -6,7 +7,28 @@ import { Injectable } from "@nestjs/common";
 @Injectable()
 export class DbUtilsService {
   /**
-   *
+   * @param aggFunc Identificação da função de agregação
+   * @param propertyName Propriedade a ser agregada
+   * @returns String que combina aggFunc e propertyName
+   */
+  generateAggregateFunction(
+    aggFunc: SqlAggregateFunctionsEnum,
+    propertyName: string,
+  ): string {
+    switch (aggFunc) {
+      case SqlAggregateFunctionsEnum.AVG:
+        return `${SqlAggregateFunctionsEnum.AVG}(${propertyName})`;
+      case SqlAggregateFunctionsEnum.COUNT:
+        return `${SqlAggregateFunctionsEnum.COUNT}(${propertyName})`;
+      case SqlAggregateFunctionsEnum.MAX:
+        return `${SqlAggregateFunctionsEnum.MAX}(${propertyName})`;
+      case SqlAggregateFunctionsEnum.MIN:
+        return `${SqlAggregateFunctionsEnum.MIN}(${propertyName})`;
+      case SqlAggregateFunctionsEnum.SUM:
+        return `${SqlAggregateFunctionsEnum.SUM}(${propertyName})`;
+    }
+  }
+  /**
    * @param columnAlias Apelido a ser usado para a coluna
    * @returns Apelido entre aspas duplas
    */
@@ -26,7 +48,6 @@ export class DbUtilsService {
     return "";
   }
   /**
-   *
    * @param entity Entidade para a qual será gerada a string correspondente
    * @returns String que representa a entidade
    */

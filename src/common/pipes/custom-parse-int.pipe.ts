@@ -1,11 +1,6 @@
 /* Nest.js imports */
 import { HttpException, HttpStatus, ParseIntPipe } from "@nestjs/common";
-/*
-CustomParseIntPipe
-
-Essa instância de ParseIntPipe foi construída de forma retornar uma mensagem padroni-
-zada de erro, de modo a manter o padrão retornado pelo HttpExceptionFilter.
-*/
+/* CustomParseIntPipe */
 export const CustomParseIntPipe = new ParseIntPipe({
   exceptionFactory: () => {
     return new HttpException(

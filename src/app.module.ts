@@ -6,6 +6,7 @@ import { TransformInterceptor } from "./common/interceptors/transform.intercepto
 import { DbUtilsModule } from "./modules/common/utils/db/db-utils.module";
 import { DisposalPointsModule } from "./modules/disposal-points/dp.module";
 import { MessagesUtilsModule } from "./modules/common/utils/messages/messages-utils.module";
+import { ReportsModule } from "./modules/reports/rep.module";
 import { StringUtilsModule } from "./modules/common/utils/string/string-utils.module";
 import { UsersModule } from "./modules/users/us.module";
 import { WastesModule } from "./modules/wastes/wt.module";
@@ -26,6 +27,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
     DbUtilsModule,
     DisposalPointsModule,
     MessagesUtilsModule,
+    ReportsModule,
     StringUtilsModule,
     /* ORM module */
     TypeOrmModule.forRoot({

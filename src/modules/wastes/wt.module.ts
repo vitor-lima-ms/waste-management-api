@@ -14,6 +14,7 @@ import { WastesService } from "./providers/wt.service";
 /* WastesModule */
 @Module({
   controllers: [WastesController],
+  exports: [WastesService],
   imports: [DisposalPointsModule, TypeOrmModule.forFeature([WasteEntity])],
   providers: [WastesHelper, WastesService],
 })

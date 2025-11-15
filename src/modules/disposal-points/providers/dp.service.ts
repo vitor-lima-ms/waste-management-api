@@ -15,6 +15,7 @@ import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 /* Other libraries imports */
 import { Repository } from "typeorm";
+import * as uuid from "uuid";
 /* Response imports */
 import { FindAllDisposalPointsResponse } from "../responses/find-all-dp.response";
 import { FindOneDisposalPointResponse } from "../responses/find-one-dp.response";
@@ -79,15 +80,24 @@ export class DisposalPointsService {
     );
   }
   async findAll(): Promise<FindAllDisposalPointsResponse[]> {
-    const allDisposalPoints = await this.disposalPointsRepository
+    return await this.disposalPointsRepository
       .createQueryBuilder(EntitiesAliasesEnum.DISPOSAL_POINT)
       .select(this.disposalPointsHelper.generateFindAllOrOneSelectColumns())
       .getRawMany<FindAllDisposalPointsResponse>();
-    return allDisposalPoints;
   }
-  async findOneById(
+  async internalFindOneById(
     id: string,
   ): Promise<FindOneDisposalPointResponse | undefined> {
+    const validUuid = uuid.validate(id);
+    if (!validUuid) {
+      throw new HttpException(
+        this.messagesUtils.generateHttpExceptionErrorMessage(
+          EntitiesPtBrNamesEnum.DISPOSAL_POINT,
+          HttpExceptionMessageContextsEnum.UUID_ERROR,
+        ),
+        HttpStatus.BAD_REQUEST,
+      );
+    }
     return await this.disposalPointsRepository
       .createQueryBuilder(EntitiesAliasesEnum.DISPOSAL_POINT)
       .select(this.disposalPointsHelper.generateFindAllOrOneSelectColumns())

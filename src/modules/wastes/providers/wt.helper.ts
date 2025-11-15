@@ -6,7 +6,6 @@ import { DisposalPointEntity } from "src/modules/disposal-points/dp.entity";
 import { EntitiesAliasesEnum } from "src/common/enums/entities-aliases.enum";
 import { DisposalPointEntityPropertiesDbNamesEnum } from "src/modules/disposal-points/enums/dp-entity-properties-db-names.enum";
 import { DisposalPointEntityPropertiesNamesEnum } from "src/modules/disposal-points/enums/dp-entity-properties-names.enum";
-import { SqlDataTypesEnum } from "src/modules/common/utils/db/enums/sql-data-types.enum";
 import { WasteEntityPropertiesDbNamesEnum } from "../enums/wt-entity-properties-db-names.enum";
 import { WasteEntityPropertiesNamesEnum } from "../enums/wt-entity-properties-names.enum";
 /* Nest.js imports */

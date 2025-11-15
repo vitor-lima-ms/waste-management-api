@@ -14,7 +14,7 @@ import {
   Post,
 } from "@nestjs/common";
 /* Pipe imports */
-import { CustomParseUUIDPipe } from "src/common/pipes/custom-parse-uuid.pipe";
+import { CustomParseUuidPipe } from "src/common/pipes/custom-parse-uuid.pipe";
 import { CustomValidationPipe } from "src/common/pipes/custom-validation.pipe";
 /* Response imports */
 import { FindAllUsersResponse } from "./responses/find-all-us.response";
@@ -34,7 +34,7 @@ export class UsersController {
   }
   @Delete(":id")
   delete(
-    @Param("id", CustomParseUUIDPipe) id: string,
+    @Param("id", CustomParseUuidPipe) id: string,
   ): Promise<string | undefined> {
     return this.usersService.delete(id);
   }
@@ -44,13 +44,13 @@ export class UsersController {
   }
   @Get(":id")
   findOneById(
-    @Param("id", CustomParseUUIDPipe) id: string,
+    @Param("id", CustomParseUuidPipe) id: string,
   ): Promise<FindOneUserResponse | undefined> {
     return this.usersService.findOneById(id);
   }
   @Patch(":id")
   updateEmailNameAndRole(
-    @Param("id", CustomParseUUIDPipe) id: string,
+    @Param("id", CustomParseUuidPipe) id: string,
     @Body(CustomValidationPipe) updateUserDto: UpdateUserEmailNameAndRoleDto,
   ): Promise<string | undefined> {
     return this.usersService.updateEmailNameAndRole(id, updateUserDto);
