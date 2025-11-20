@@ -12,6 +12,7 @@ import {
   ManyToOne,
   UpdateDateColumn,
 } from "typeorm";
+import { Exclude } from "class-transformer";
 /* Util imports */
 import { MessagesUtilsClass } from "../utils/messages/messages-utils.class";
 /* AbstractEntity */
@@ -20,7 +21,11 @@ export abstract class AbstractEntity {
     name: AbstractEntityPropertiesDbNamesEnum.CREATED_AT,
     type: "timestamp with time zone",
   })
+  @Exclude()
   createdAt: string;
+
+  @Exclude()
+  @ManyToOne(() => UserEntity, { nullable: true })
   @JoinColumn({
     name: AbstractEntityPropertiesDbNamesEnum.CREATED_BY_ID,
     foreignKeyConstraintName: MessagesUtilsClass.generateDbConstraintsNames(
@@ -32,13 +37,16 @@ export abstract class AbstractEntity {
     ),
     referencedColumnName: UserEntityPropertiesNamesEnum.ID,
   })
-  @ManyToOne(() => UserEntity, { nullable: true })
   createdById: string;
+
+  @Exclude()
   @UpdateDateColumn({
     name: AbstractEntityPropertiesDbNamesEnum.UPDATED_AT,
     type: "timestamp with time zone",
   })
   updatedAt: string;
+
+  @Exclude()
   @JoinColumn({
     name: AbstractEntityPropertiesDbNamesEnum.UPDATED_BY_ID,
     foreignKeyConstraintName: MessagesUtilsClass.generateDbConstraintsNames(

@@ -48,6 +48,7 @@ export class DbUtilsService {
     if (sqlDataType) {
       return `::${sqlDataType}`;
     }
+
     return "";
   }
   /**

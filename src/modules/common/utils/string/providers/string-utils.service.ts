@@ -11,9 +11,11 @@ export class StringUtilsService {
    */
   trimAndRemoveExtraBlankSpacesBetweenChars(string_: string): string {
     const splitedString = string_.split(" ");
+
     const trimmedStringWithoutExtraBlankSpaces = splitedString
       .filter((char) => char !== "")
       .join(" ");
+
     return trimmedStringWithoutExtraBlankSpaces;
   }
 }

@@ -13,9 +13,13 @@ import { Request, Response } from "express";
 export class HttpExceptionFilter implements ExceptionFilter<HttpException> {
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
+
     const req = ctx.getRequest<Request>();
+
     const res = ctx.getResponse<Response>();
+
     const status = exception.getStatus();
+
     let details = exception.getResponse() as
       | string
       | {
@@ -23,16 +27,19 @@ export class HttpExceptionFilter implements ExceptionFilter<HttpException> {
           error: string;
           statusCode: number;
         };
+
     if (typeof details === "string") {
       details = details.endsWith(".") ? details : details.concat(".");
     } else {
       details = details.message;
     }
+
     res.status(status).json({
       details: details,
       path: req.url,
       statusCode: status,
       statusMessage: HttpStatus[status].replace("_", " ").concat("!"),
+      success: false,
       timestamp: {
         date: new Date().toLocaleDateString("pt-br"),
         time: new Date().toLocaleTimeString("pt-br"),

@@ -8,6 +8,7 @@ export const CustomValidationPipe = new ValidationPipe({
         ? Object.values(validationError.constraints).join(", ")
         : validationError.constraints;
     });
+
     return new HttpException(
       validationException.join(", "),
       HttpStatus.BAD_REQUEST,

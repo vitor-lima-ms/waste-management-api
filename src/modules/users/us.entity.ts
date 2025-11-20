@@ -86,6 +86,6 @@ export class UserEntity {
     nullable: true,
   })
   usPasswordResetToken: string;
-  @Column({ name: UserEntityPropertiesDbNamesEnum.ROLE, enum: RolesEnum })
+  @Column({ enum: RolesEnum, name: UserEntityPropertiesDbNamesEnum.ROLE, type: "enum" })
   usRole: RolesEnum;
 }

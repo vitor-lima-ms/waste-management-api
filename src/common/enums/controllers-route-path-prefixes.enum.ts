@@ -1,7 +1,9 @@
 /* ControllersRoutePathPrefixesEnum */
 export enum ControllersRoutePathPrefixesEnum {
-  DISPOSAL_POINT = "disposal-points",
-  REPORT = "reports",
+  ENVIRONMENTAL_MATRIX = "environmental-matrices",
+  GENERIC_PARAMETER = "generic-parameters",
+  PUBLISHER = "publishers",
+  REGULATION = "regulations",
+  UNIT = "units",
   USER = "users",
-  WASTE = "wastes",
 }

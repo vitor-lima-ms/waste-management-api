@@ -1,6 +1,5 @@
 /* ClassValidatorDecoratorsNamesEnum */
 export enum ClassValidatorDecoratorsNamesEnum {
-  IS_DECIMAL = "IsDecimal",
   IS_DATE_STRING = "IsDateString",
   IS_EMAIL = "IsEmail",
   IS_ENUM = "IsEnum",

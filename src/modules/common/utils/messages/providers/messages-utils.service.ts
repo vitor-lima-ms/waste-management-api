@@ -20,6 +20,7 @@ export class MessagesUtilsService {
     entityIdentifier: EntitiesPtBrNamesEnum,
   ): string {
     const lowercasedEntityIdentifier = entityIdentifier.toLowerCase();
+
     switch (cudOperation) {
       case CreateUpdateAndDeleteEnum.CREATE:
         return `Instância de ${lowercasedEntityIdentifier} criada com sucesso.`;
@@ -43,23 +44,33 @@ export class MessagesUtilsService {
     propertiesNames?: string[],
   ): string {
     const lowercasedEntityIdentifier = entityIdentifier.toLowerCase();
+
     let notUndefinedFlag = false;
-    let propertiesNamesLength = 0;
+
+    let propertyNameLength = 0;
+
     let lowercasedPropertyName = "";
+
     let lowercasedPropertiesNames = "";
+
     if (propertiesNames) {
       notUndefinedFlag = true;
-      propertiesNamesLength = propertiesNames.length;
-      if (propertiesNamesLength > 1) {
+
+      propertyNameLength = propertiesNames.length;
+
+      if (propertyNameLength > 1) {
         const lastPropertyName = propertiesNames.pop();
+
         const arrayWithoutLastPropertyName = propertiesNames?.filter(
           (value) => value !== lastPropertyName,
         );
+
         lowercasedPropertiesNames = `${arrayWithoutLastPropertyName.join(", ")} e ${lastPropertyName}`;
       } else {
         [lowercasedPropertyName] = propertiesNames;
       }
     }
+
     switch (exceptionContext) {
       case HttpExceptionMessageContextsEnum.CONFIRM_PASSWORD_ERROR:
         return "A confirmação de senha não é igual à senha enviada";
@@ -67,10 +78,8 @@ export class MessagesUtilsService {
         return `Impossível realizar ação! Dados faltantes: ${lowercasedPropertiesNames}`;
       case HttpExceptionMessageContextsEnum.NOT_FOUND:
         return `Instância de ${lowercasedEntityIdentifier} não encontrada`;
-      case HttpExceptionMessageContextsEnum.TOO_MUCH_QUERY_PARAMS:
-        return `A filtragem de instâncias de ${lowercasedEntityIdentifier} só é possível a partir de um único parâmetro`;
       case HttpExceptionMessageContextsEnum.UNIQUE_ERROR:
-        return `Já existe ${lowercasedEntityIdentifier} com o mesmo valor de: ${notUndefinedFlag ? (propertiesNamesLength > 1 ? lowercasedPropertiesNames.toLowerCase() : lowercasedPropertyName.toLowerCase()) : undefined}`;
+        return `Já existe ${lowercasedEntityIdentifier} com o mesmo valor de: ${notUndefinedFlag ? (propertyNameLength > 1 ? lowercasedPropertiesNames.toLowerCase() : lowercasedPropertyName.toLowerCase()) : undefined}`;
       case HttpExceptionMessageContextsEnum.UUID_ERROR:
         return "O valor enviado como parâmetro é um uuid inválido";
     }

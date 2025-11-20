@@ -20,13 +20,14 @@ export class MessagesUtilsClass {
     aditionalValidations?: ClassValidatorAditionalValidationsType,
   ): string {
     const lowercasedPropertyName = propertyName.toLowerCase();
+
     const enumValues = aditionalValidations?.enumValues
       ? Object.values(aditionalValidations.enumValues).join(", ")
       : undefined;
+
     const strongPasswordOptions = aditionalValidations?.strongPasswordOptions;
+
     switch (decoratorName) {
-      case ClassValidatorDecoratorsNamesEnum.IS_DECIMAL:
-        return `O campo ${lowercasedPropertyName} deve ser preenchido com um número decimal`;
       case ClassValidatorDecoratorsNamesEnum.IS_DATE_STRING:
         return `O campo ${lowercasedPropertyName} deve ser preenchido com uma data no formato AAAA-MM-DD`;
       case ClassValidatorDecoratorsNamesEnum.IS_EMAIL:

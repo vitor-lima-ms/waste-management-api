@@ -28,6 +28,7 @@ export class TransformInterceptor<T>
         return {
           count: Array.isArray(data) ? data.length : dataArray.length,
           data: Array.isArray(data) ? data : dataArray,
+          success: true,
         };
       }),
     );
