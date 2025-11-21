@@ -4,7 +4,7 @@ import { DisposalPointEntityPropertiesPtBrNamesEnum } from "../enums/dp-entity-p
 import { LocalitiesTypesEnum } from "../enums/localities-types.enum";
 import { WastesCategoriesEnum } from "src/modules/wastes/enums/wastes-categories.enum";
 /* Other libraries imports */
-import { IsEnum, IsNotEmpty, IsNumber } from "class-validator";
+import { IsEnum, IsNotEmpty, IsNumberString } from "class-validator";
 /* Util imports */
 import { MessagesUtilsClass } from "src/common/utils/messages/messages-utils.class";
 /* CreateDisposalPointDto */
@@ -17,8 +17,8 @@ export class CreateDisposalPointDto {
     ),
   })
   dpAcceptedWasteCategory: WastesCategoriesEnum;
-  @IsNumber(
-    { allowInfinity: false, allowNaN: false },
+  @IsNumberString(
+    { locale: "en-US" },
     {
       message: MessagesUtilsClass.generateClassValidatorErrorMessage(
         DisposalPointEntityPropertiesPtBrNamesEnum.LATITUDE,
@@ -42,11 +42,11 @@ export class CreateDisposalPointDto {
     ),
   })
   dpLocalityType: LocalitiesTypesEnum;
-  @IsNumber(
-    { allowInfinity: false, allowNaN: false },
+  @IsNumberString(
+    { locale: "en-US" },
     {
       message: MessagesUtilsClass.generateClassValidatorErrorMessage(
-        DisposalPointEntityPropertiesPtBrNamesEnum.LATITUDE,
+        DisposalPointEntityPropertiesPtBrNamesEnum.LONGITUDE,
         ClassValidatorDecoratorsNamesEnum.IS_NUMBER,
       ),
     },

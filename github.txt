@@ -1,1 +1,1 @@
-https://github.com/vitor-lima-ms/waste-management-backend
+https://github.com/vitor-lima-ms/waste-management
